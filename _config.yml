@@ -3,10 +3,10 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: WangZhi-Blog
 subtitle:
 description:
-author: John Doe
+author: WangZhi
 language:
 timezone:
 
@@ -63,7 +63,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: http://hexo.io/plugins/
 ## Themes: http://hexo.io/themes/
-theme: pacman
+theme: yilia
 
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
