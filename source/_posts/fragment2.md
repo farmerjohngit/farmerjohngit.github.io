@@ -1,6 +1,6 @@
 title: 深入分析FragmentManager管理机制(二)
 date: 2016-07-31 09:48:53
-tags:
+tags: Android
 ---
   
 [上篇文章](http://farmercoding.win/2016/07/17/fragment/)我们分析了FragmentManager是怎样添加一个fragment的，在这篇文章中，我们将介绍attach,disatch,replace,remove等几个方法

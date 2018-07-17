@@ -1,6 +1,6 @@
 title: Service使用时的一个坑：Service not registered
 date: 2016-07-18 17:43:52
-tags:
+tags: Android
 ---
 今天因为业务需求，要在application中启动一个service，代码如下： 
 <!-- more -->

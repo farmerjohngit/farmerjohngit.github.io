@@ -1,6 +1,6 @@
 title: HBase Rpc返回数据之谜
 date: 2018-01-04 17:53:04
-tags:
+tags: hbase
 ---
 
 接触HBase也有一段时间了，对于HBase scan的一次Rpc到底返回多少数据的问题一直不是很理解。

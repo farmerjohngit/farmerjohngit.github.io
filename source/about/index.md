@@ -11,6 +11,11 @@ type: "about"
 
 前Android开发，熟悉Hotfix，动态加载，gradle插件开发
 
-现Java服务端开发
+现Java服务端开发,熟悉Redis,HBase,Kafka
 
-就职于蘑菇街
+现就职于51信用卡，之前在蘑菇街
+
+邮箱: <farmercoding@163.com>
+
+github: <https://github.com/farmerjohngit>
+

@@ -1,6 +1,6 @@
 title: gradle入门与在android中的使用
 date: 2016-03-12 23:18:52
-tags:
+tags: gradle
 ---
 一、gradle简介
 ====

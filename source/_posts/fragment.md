@@ -1,6 +1,6 @@
 title:  深入分析FragmentManager管理机制(一)
 date: 2016-07-17 16:43:34
-tags:
+tags: Android
 ---
  
 
