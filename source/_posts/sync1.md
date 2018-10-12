@@ -151,24 +151,36 @@ linux底层用futex实现锁，futex由一个内核层的队列和一个用户�
  
 内核提供的同步机制，如semaphore等，使用的是上文说的自旋+等待的形式。 它对于大小临界区和都适用。但是因为它是内核层的（释放cpu资源是内核级调用），所以每次lock与unlock都是一次系统调用，即使没有锁冲突，也必须要通过系统调用进入内核之后才能识别。
 
-理想的同步机制应该是在没有锁冲突的情况下在用户态利用原子指令就解决问题，而需要挂起等待时再使用内核提供的系统调用进行睡眠与唤醒。换句话说，用户态的自旋失败时（自旋超过一定次数还没获得锁），能不能让进程挂起，并且由持有锁的线程在unlock时将其唤醒？
-如果你没有较深入地考虑过这个问题，很可能想当然的认为类似于这样就行了：
+理想的同步机制应该是没有锁冲突时在用户态利用原子指令就解决问题，而需要挂起等待时再使用内核提供的系统调用进行睡眠与唤醒。换句话说，在用户态的自旋失败时，能不能让进程挂起，由持有锁的线程释放锁时将其唤醒？
+如果你没有较深入地考虑过这个问题，很可能想当然的认为类似于这样就行了（伪代码）：
 
 ```
 void lock(int lockval) {
-	//trylock是用户级的cas操作
-	while(! trylock(lockval,0,1)) {
+	//trylock是用户级的自旋锁
+	while(!trylock(lockval)) {
 		wait();//释放cpu，并将当期线程加入等待队列，是系统调用
 	}
 }
-void trylock(int lockval,int exceptValue,int newValye){
-//cas修改lockval
+
+boolean trylock(int lockval){
+	int i=0; 
+	//localval=1代表上锁成功
+	while(!compareAndSet(lockval,0,1)){
+		if(++i>10){
+			return false;
+		}
+	}
+	return true;
+}
+
+void unlock(int lockval) {
+	 compareAndSet(lockval,1,0);
+	 notify();
 }
 ```
- 
+
 上述代码的问题是trylock和wait两个调用之间存在一个窗口：
-如果一个线程trylock失败，在调用wait，持有锁的线程释放了锁，当前线程还是会调用wait进行等待，但之后就没有人再将该线程唤醒了。
- 
+如果一个线程trylock失败，在调用wait时持有锁的线程释放了锁，当前线程还是会调用wait进行等待，但之后就没有人再将该线程唤醒了。
  
  
 ### futex诞生之后
