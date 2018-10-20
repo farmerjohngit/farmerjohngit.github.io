@@ -1,6 +1,6 @@
 title: 关于同步的一点思考-下
 date: 2018-09-16 22:43:10
-tags: 线程同步
+tags: 同步
 ---
 
 在[<关于同步的一点思考-上>](https://github.com/farmerjohngit/myblog/issues/6)中介绍了几种实现锁的方式以及linux底层futex的实现原理

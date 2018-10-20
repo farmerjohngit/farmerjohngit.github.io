@@ -1,6 +1,6 @@
 title: linux内核级同步机制--futex
 date: 2018-09-28 15:40:33
-tags:
+tags: 同步
 ---
 
 
